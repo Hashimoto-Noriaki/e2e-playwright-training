@@ -16,3 +16,5 @@ async function githubSearch(){
     await page.close();
     await browser.close();
 }
+
+githubSearch();
