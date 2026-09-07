@@ -9,6 +9,8 @@
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.62.1",
-    "@types/node": "^26.4.1"
+    "@types/node": "^26.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   }
 }
