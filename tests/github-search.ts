@@ -20,6 +20,12 @@ async function githubSearch(){
     // 検索ボタンをクリックして検索用の入力ダイアログを開く
     await searchButton.click();
 
+    const searchBox = page.locator('#query-builder-test');
+    await page.waitForTimeout(5000);
+    await searchBox.fill('playwright');
+    await page.waitForTimeout(5000);
+    await searchBox.press('Enter');
+
     //10秒間の待機時間(通常のテストでは固定のテストの待機は推奨されないが、今回は動作確認のために使用)
     await page.waitForTimeout(1000);
     await page.close();
