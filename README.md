@@ -16,6 +16,12 @@ Playwright が使用するブラウザ（Chromium / Firefox / WebKit）をイン
 npx playwright install
 ```
 
+## ts-nodeの実行
+
+```bash
+npx ts-node tests/github-search.ts
+```
+
 ## テストの実行
 
 すべてのテストを実行します。
