@@ -13,14 +13,16 @@ async function githubSearch(){
     // GitHubのトップページへ遷移する
     await page.goto("https://github.com");
 
-    // ヘッダーにある検索ボタン（虫眼鏡アイコン）の要素を取得する
-    const searchButton = page.locator('.header-search-button');
+    // ヘッダーにある検索ボタン（「Search or jump to」というaria-labelを持つボタン）の要素を取得する
+    // ※GitHubのCSSクラス名はビルドごとに変わるハッシュ付きの値のため、aria-labelで要素を特定する
+    const searchButton = page.getByRole('button', { name: /search or jump to/i });
     // ページの描画が完了するのを待つため5秒間待機する
     await page.waitForTimeout(5000);
     // 検索ボタンをクリックして検索用の入力ダイアログを開く
     await searchButton.click();
 
-    const searchBox = page.locator('#query-builder-test');
+    // 検索ダイアログ内の入力欄（placeholderで特定する）を取得する
+    const searchBox = page.getByPlaceholder('Search or jump to...');
     await page.waitForTimeout(5000);
     await searchBox.fill('playwright');
     await page.waitForTimeout(5000);
