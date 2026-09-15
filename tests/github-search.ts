@@ -4,6 +4,7 @@
 // これをインポートすることで、Chromiumブラウザを起動・操作できるようになる
 import { chromium } from "playwright"
 
+// GitHubのトップページで検索ボタンをクリックするまでの一連の処理を行う関数
 async function githubSearch(){
     // ヘッドレスモードを無効にしてブラウザを起動する（画面を表示して動作を確認するため）
     const browser = await chromium.launch({ headless: false});
@@ -11,6 +12,14 @@ async function githubSearch(){
     const page = await browser.newPage();
     // GitHubのトップページへ遷移する
     await page.goto("https://github.com");
+
+    // ヘッダーにある検索ボタン（虫眼鏡アイコン）の要素を取得する
+    const searchButton = page.locator('.header-search-button');
+    // ページの描画が完了するのを待つため5秒間待機する
+    await page.waitForTimeout(5000);
+    // 検索ボタンをクリックして検索用の入力ダイアログを開く
+    await searchButton.click();
+
     //10秒間の待機時間(通常のテストでは固定のテストの待機は推奨されないが、今回は動作確認のために使用)
     await page.waitForTimeout(1000);
     await page.close();
