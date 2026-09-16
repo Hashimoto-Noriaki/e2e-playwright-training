@@ -28,6 +28,12 @@ async function githubSearch(){
     await page.waitForTimeout(5000);
     await searchBox.press('Enter');
 
+    //GitHub検索結果リンク遷移
+    // ※"playwright"を含むリンクは複数あり(関連リポジトリやトピックタグなど)strict mode違反になるため、hrefで一意に絞る
+    const playWrightLink = page.locator('a[href="/microsoft/playwright"]');
+    await page.waitForTimeout(5000);
+    await playWrightLink.click();
+
     //10秒間の待機時間(通常のテストでは固定のテストの待機は推奨されないが、今回は動作確認のために使用)
     await page.waitForTimeout(1000);
     await page.close();
