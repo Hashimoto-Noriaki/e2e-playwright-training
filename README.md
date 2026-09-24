@@ -13,3 +13,7 @@ npx playwright test ファイル名　--headed
 ### Python.orgサイト
 
 https://www.python.org/
+
+### ECデモ用のサイト
+
+https://tutorialsninja.com/demo/
