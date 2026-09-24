@@ -1,11 +1,21 @@
 // Locator: Playwrightでページ上の要素を指し示すためのオブジェクトの型
-import { Locator } from "@playwright/test";
+// Page: ブラウザの1つのタブ（ページ）を表す型。コンストラクタの引数の型として使う
+import { Locator, Page } from "@playwright/test";
 // トップページの要素のセレクタをまとめたクラス
 import { MainPageLocators } from "../locators/main-page-locators";
+// BasePageを継承することで、テストから渡されたpageを保持できるようになる
+import { BasePage } from "../base/base-page";
 
 // Python.orgのトップページに対する操作をまとめたクラス（Page Object）
 // ※テスト(specs)からは「何をするか」だけを呼び出し、「どの要素をどう操作するか」はこのクラスに閉じ込める
-export class MainPage {
+export class MainPage extends BasePage {
+    // インスタンス生成時（new MainPage(page)）にテストからpageを受け取る
+    constructor(page: Page) {
+        // super: 親クラス（BasePage）のコンストラクタを呼び出すキーワード
+        // 受け取ったpageを親クラスに渡して保持してもらうことで、このクラスのメソッド内で this.page が使えるようになる
+        super(page); // BasePageのコンストラクタを呼び出し、pageを保持する
+    }
+
     // 検索ボックスに「unittest」と入力する
     async inputTextBox(): Promise<void> {
         // 検索ボックスの要素を取得する
