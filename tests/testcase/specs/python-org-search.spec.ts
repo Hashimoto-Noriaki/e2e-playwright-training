@@ -5,7 +5,7 @@ import { SearchResultPage } from '../pages/search-result-page';
 test('search document', async ({ page }) => {
     await page.goto('https://www.python.org/');
 
-    const mainPage = new mainPage(page);
+    const mainPage = new MainPage(page);
     await mainPage.inputTextBox();
     await mainPage.clickGoButton();
 
